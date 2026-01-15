@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn Crypto Hourly - Instant Bonuses</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        header {
+            text-align: center;
+            padding: 60px 20px;
+            border-bottom: 2px solid #00ff88;
+            margin-bottom: 40px;
+        }
+        
+        h1 {
+            color: #00ff88;
+            font-size: 3em;
+            margin-bottom: 20px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+        }
+        
+        .subtitle {
+            color: #00ff88;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        
+        .description {
+            color: #ffffff;
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            padding: 20px;
+            background-color: #0a0a0a;
+            border-bottom: 1px solid #00ff88;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+        
+        .nav a {
+            color: #00ff88;
+            text-decoration: none;
+            font-size: 1.2em;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+        
+        .nav a:hover {
+            text-shadow: 0 0 10px rgba(0, 255, 136, 0.8);
+        }
+        
+        .section {
+            background-color: #0a0a0a;
+            border-left: 4px solid #00ff88;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 8px;
+        }
+        
+        h2 {
+            color: #00ff88;
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+        
+        h3 {
+            color: #00ff88;
+            font-size: 1.5em;
+            margin: 30px 0 15px 0;
+        }
+        
+        ul {
+            list-style: none;
+            margin: 20px 0;
+        }
+        
+        li {
+            color: #ffffff;
+            padding: 12px 0;
+            padding-left: 30px;
+            position: relative;
+            font-size: 1.1em;
+        }
+        
+        li:before {
+            content: "▸";
+            color: #00ff88;
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        
+        .highlight-box {
+            background-color: #001a0f;
+            border: 2px solid #00ff88;
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 8px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #00ff88;
+            color: #000000;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            margin-top: 20px;
+            transition: all 0.3s;
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+        }
+        
+        .cta-button:hover {
+            background-color: #00dd77;
+            box-shadow: 0 0 30px rgba(0, 255, 136, 0.6);
+            transform: translateY(-2px);
+        }
+        
+        .trust-note {
+            background-color: #0a1a0a;
+            border-left: 4px solid #00ff88;
+            padding: 20px;
+            margin: 30px 0;
+            color: #cccccc;
+        }
+        
+        .emoji {
+            font-size: 1.3em;
+            margin-right: 10px;
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+        
+        .card {
+            background-color: #0a0a0a;
+            border: 1px solid #00ff88;
+            padding: 30px;
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+        
+        .card:hover {
+            box-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            transform: translateY(-5px);
+        }
+        
+        strong {
+            color: #00ff88;
+        }
+        
+        .faq-item {
+            background-color: #0a0a0a;
+            border: 1px solid #00ff88;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+        }
+        
+        .faq-question {
+            color: #00ff88;
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .faq-answer {
+            color: #ffffff;
+            line-height: 1.8;
+        }
+        
+        .disclaimer {
+            background-color: #1a0a0a;
+            border: 2px solid #ff8800;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+        
+        .disclaimer h3 {
+            color: #ff8800;
+        }
+        
+        .disclaimer p, .disclaimer li {
+            color: #cccccc;
+            font-size: 0.95em;
+        }
+        
+        .pillars {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .pillar {
+            background-color: #001a0f;
+            border: 2px solid #00ff88;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+        
+        .pillar .emoji {
+            font-size: 2.5em;
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Earn Crypto Hourly with Instant Bonuses</h1>
+        <p class="subtitle">Instant credit, higher payouts — no waiting</p>
+        <p class="description">Faucet rewards are credited instantly + extra bonuses on every activity</p>
+        
+        <div class="trust-note" style="max-width: 800px; margin: 30px auto; text-align: center;">
+            <strong style="color: #00ff88;">🎉 Great News!</strong> We offer multiple platforms like this, each supporting different cryptocurrencies. More options, more earning opportunities!
+        </div>
+    </header>
+    
+            <nav class="nav">
+        <a href="#why-join">Why Join</a>
+        <a href="#platforms">Platforms</a>
+        <a href="#how-it-works">How It Works</a>
+        <a href="#bonuses">Bonuses</a>
+        <a href="#telegram">Telegram</a>
+        <a href="#faq">FAQ</a>
+    </nav>
+    
+    <div class="container">
+        
+        <div class="section" id="why-join">
+            <h2>Why Join Through Our Link?</h2>
+            <p class="description">Get an exclusive account with instant bonuses <strong>on top of the platform's rewards</strong>. Every action you take is rewarded immediately.</p>
+            
+            <div class="highlight-box">
+                <h3>🎁 Win/Win Opportunity</h3>
+                <p class="description">When you subscribe with our referral link, a referral credit is generated on your activity on the platform. We share this commission with you!</p>
+                <p class="description" style="margin-top: 15px;">This means you get an exclusive account with instant bonuses above the provided bonuses of the platform.</p>
+            </div>
+            
+            <div class="pillars">
+                <div class="pillar">
+                    <span class="emoji">⏱</span>
+                    <strong>Instant faucet credit</strong>
+                    <p style="color: #ccc; margin-top: 10px;">No pending, no waiting</p>
+                </div>
+                <div class="pillar">
+                    <span class="emoji">💧</span>
+                    <strong>+25% faucet bonus</strong>
+                    <p style="color: #ccc; margin-top: 10px;">On every claim</p>
+                </div>
+                <div class="pillar">
+                    <span class="emoji">🎮</span>
+                    <strong>+0.2% wager bonus</strong>
+                    <p style="color: #ccc; margin-top: 10px;">On all mini games</p>
+                </div>
+                <div class="pillar">
+                    <span class="emoji">📋</span>
+                    <strong>+2.5% survey bonus</strong>
+                    <p style="color: #ccc; margin-top: 10px;">On completed surveys</p>
+                </div>
+                <div class="pillar">
+                    <span class="emoji">🔄</span>
+                    <strong>Works automatically</strong>
+                    <p style="color: #ccc; margin-top: 10px;">After signup</p>
+                </div>
+            </div>
+            
+            <div class="trust-note">
+                <strong>Trust Note:</strong> All bonuses are platform-based and applied automatically. No manual steps, nothing hidden.
+            </div>
+            
+            <a href="https://litepick.io/?ref=Noobcake" class="cta-button" target="_blank">Start Earning Now</a>
+            
+            <div class="trust-note" style="margin-top: 30px;">
+                <strong>🔒 Secure Referral Links:</strong> All our referral links are verified and protected. Each link is unique and cannot be redirected or modified by third parties. Your bonuses are guaranteed when you sign up through our official links.
+            </div>
+        </div>
+        
+        <div class="section" id="platforms">
+            <h2>🌐 Choose Your Platform</h2>
+            <p class="description">We offer 8 different platforms, each supporting different cryptocurrencies. Pick the crypto you want to earn!</p>
+            
+            <div class="grid">
+                <div class="card" style="text-align: center;">
+                    <h3>💎 LitePick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn Litecoin (LTC)</p>
+                    <a href="https://litepick.io/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join LitePick</a>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h3>⚡ TronPick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn Tron (TRX)</p>
+                    <a href="https://tronpick.io/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join TronPick</a>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h3>🔵 PolPick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn Polygon (POL)</p>
+                    <a href="https://polpick.io/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join PolPick</a>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h3>🐕 DogePick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn Dogecoin (DOGE)</p>
+                    <a href="https://dogepick.io/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join DogePick</a>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h3>☀️ SolPick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn Solana (SOL)</p>
+                    <a href="https://solpick.io/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join SolPick</a>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h3>🟡 BnbPick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn BNB</p>
+                    <a href="https://bnbpick.io/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join BnbPick</a>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h3>🌊 SuiPick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn Sui (SUI)</p>
+                    <a href="https://suipick.io/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join SuiPick</a>
+                </div>
+                
+                <div class="card" style="text-align: center;">
+                    <h3>💠 TonPick</h3>
+                    <p style="color: #ccc; margin: 15px 0;">Earn Toncoin (TON)</p>
+                    <a href="https://tonpick.game/?ref=Noobcake" class="cta-button" target="_blank" style="font-size: 1em; padding: 12px 30px;">Join TonPick</a>
+                </div>
+            </div>
+            
+            <div class="highlight-box" style="margin-top: 40px; text-align: center;">
+                <h3>💡 Pro Tip</h3>
+                <p class="description">You can join multiple platforms and diversify your crypto earnings! Each platform works independently with the same bonus structure.</p>
+            </div>
+        </div>
+        
+        <div class="section" id="how-it-works">
+            <h2>How It Works</h2>
+            <p class="description">When you claim a faucet, win on a mini game, or complete a survey, the reward is instantly added to your balance.</p>
+            
+            <h3>As our referral you automatically receive:</h3>
+            <ul>
+                <li>+25% extra on every faucet claim</li>
+                <li>+0.2% extra on all wagers</li>
+                <li>+2.5% extra on surveys</li>
+            </ul>
+            
+            <p class="description" style="margin-top: 20px;"><strong>No waiting, no minimums</strong> — bonuses are applied instantly by the platform.</p>
+        </div>
+        
+        <div class="section" id="platform-features">
+            <h2>🎯 What Does The Platform Offer?</h2>
+            <p class="description">The platform provides multiple ways to earn crypto, all with instant payouts and progression systems.</p>
+            
+            <div class="grid">
+                <div class="card">
+                    <h3>💧 Hourly Faucet Claims</h3>
+                    <p>Claim free crypto every hour with instant credit to your account. Rewards appear in your balance immediately with no pending status.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🎮 Mini Games</h3>
+                    <p>Play games and place wagers. By wagering, you increase your experience level which unlocks:</p>
+                    <ul style="margin-top: 10px;">
+                        <li style="font-size: 0.95em;">Higher faucet payouts</li>
+                        <li style="font-size: 0.95em;">Bonus faucets triggered by activity</li>
+                        <li style="font-size: 0.95em;">Instant rewards on every bet</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>📋 Surveys</h3>
+                    <p>Complete surveys at your own pace and earn instant crypto rewards. No minimums, no delays — payments are credited immediately upon completion.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>🤝 Referral Program</h3>
+                    <p>Optional referral program — users choose how they use it. Completely flexible and fully under your control. Use it as much or as little as you want.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>⚡ Instant Bonuses for Wagering</h3>
+                    <p>Active users unlock higher faucet payouts. The more you wager, the more you unlock through the platform's progression system.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>💰 Weekly Cashback System</h3>
+                    <p>The platform offers a weekly cashback system to reward active users. Details and rates are managed by the platform.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>💸 Low Fees & Withdrawal Conditions</h3>
+                    <p>The platform provides low withdrawal minimums with competitive fees. <strong style="color: #00ff88;">Free withdrawals are available at higher levels</strong> — the more you play and level up, the more you save on fees.</p>
+                </div>
+            </div>
+            
+            <div class="trust-note">
+                <strong>Platform Trust Features:</strong> All rewards are instant, all bonuses are automatic, and the referral program is completely optional. You're free to use it as much or as little as you want — it's flexible and fully under your control. That's a big trust booster.<br><br>
+                <strong>Note:</strong> Platform offers are updated regularly. Check the platform for the most current features and promotions.
+            </div>
+        </div>
+        
+        <div class="section" id="bonuses">
+            <h2>⚡ Complete Bonus System</h2>
+            
+            <div class="highlight-box">
+                <h3>5 Ways to Earn:</h3>
+                <ul>
+                    <li><span class="emoji">⚡</span><strong>Instant faucet credit</strong> – rewards appear immediately</li>
+                    <li><span class="emoji">🔗</span><strong>+25% faucet bonus</strong> – applied instantly via referral</li>
+                    <li><span class="emoji">📈</span><strong>Level system</strong> – wager to unlock higher faucets</li>
+                    <li><span class="emoji">🎁</span><strong>Bonus faucets</strong> – triggered by wagering activity</li>
+                    <li><span class="emoji">🤝</span><strong>Optional referral program</strong> – use however you want</li>
+                </ul>
+            </div>
+            
+            <h3>Progression System</h3>
+            <p class="description">By wagering, you increase your experience level:</p>
+            <ul>
+                <li>Higher levels unlock higher faucet payouts</li>
+                <li>Wagering triggers bonus faucets</li>
+                <li>Active users unlock higher faucet payouts</li>
+                <li>Free withdrawals at higher levels</li>
+            </ul>
+            
+            <div class="trust-note">
+                <strong>Important:</strong> Lead with instant payouts, follow with bonuses. The referral program is completely optional and gives you full control over how you earn.
+            </div>
+        </div>
+        
+        <div class="section" id="faq">
+            <h2>❓ FAQ & Transparency</h2>
+            
+            <div class="faq-item">
+                <div class="faq-question">Are the bonuses real and instant?</div>
+                <div class="faq-answer">
+                    Yes. All listed bonuses are applied instantly by the platform at the moment you perform an activity. There is no pending balance, no waiting period, and no manual processing.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Where do these bonuses come from?</div>
+                <div class="faq-answer">
+                    The bonuses originate from the platform's referral reward system. When you sign up using our referral link, the platform generates a referral commission based on user activity. A portion of this commission is automatically shared with you as bonuses.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do I need to activate anything?</div>
+                <div class="faq-answer">
+                    No. Once you register through our referral link, all applicable bonuses are enabled automatically. No extra steps are required.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">What bonuses do I receive as a referral?</div>
+                <div class="faq-answer">
+                    If you sign up using our referral link, you receive:<br><br>
+                    💧 +25% extra on every faucet claim<br>
+                    🎮 +0.2% extra on all wagers<br>
+                    📋 +2.5% extra on completed surveys<br><br>
+                    All bonuses are credited instantly to your account balance.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Is this cashback?</div>
+                <div class="faq-answer">
+                    No. These are platform-based bonuses, not manual or external cashback payments. The platform applies these bonuses automatically during each eligible activity.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Are there minimum requirements or delays?</div>
+                <div class="faq-answer">
+                    No. There are no minimum thresholds, no withdrawal delays, and no waiting periods for these bonuses, as long as the platform applies them under its current rules.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Do I need to invite others to earn?</div>
+                <div class="faq-answer">
+                    No. The referral program is optional. You can earn through faucets, games, and surveys without referring anyone.
+                </div>
+            </div>
+            
+            <div class="faq-item">
+                <div class="faq-question">Can I use the platform normally without bonuses?</div>
+                <div class="faq-answer">
+                    Yes. Bonuses are an extra benefit for users who join via a referral link. The platform remains fully usable without participating in any referral program.
+                </div>
+            </div>
+        </div>
+        
+        <div class="disclaimer">
+            <h3>⚠️ Disclaimer & Conditions</h3>
+            <ul style="margin-top: 20px;">
+                <li>All bonuses described on this page are entirely platform-based and are governed by the platform's current referral and reward conditions.</li>
+                <li>Referral bonuses are only applicable as long as the platform supports and applies them under its active policies.</li>
+                <li>We do not control, modify, or guarantee the platform's referral system, reward percentages, or bonus availability.</li>
+                <li>Bonus rates, eligibility, or mechanics may change, be reduced, or be removed by the platform at any time without prior notice.</li>
+                <li>Any bonuses credited are applied automatically by the platform, not manually by us.</li>
+                <li>We are not responsible for platform outages, policy changes, account restrictions, or reward adjustments made by the platform.</li>
+                <li>By using the referral link, you agree to the platform's terms of service, referral conditions, and reward policies.</li>
+            </ul>
+            
+            <h3 style="margin-top: 30px;">🔍 Transparency Notice</h3>
+            <p style="margin-top: 15px;">This website provides information about referral-based bonuses only. We do not offer financial advice, guarantees, or independent reward systems. All rewards depend solely on the platform's current operational conditions.</p>
+        </div>
+        
+        <div class="section" id="telegram">
+            <h2>💬 Join Our Telegram Community</h2>
+            
+            <div class="highlight-box" style="text-align: center;">
+                <h3 style="color: #ff8800;">🚧 Under Construction 🚧</h3>
+                <p class="description" style="margin-top: 20px; color: #cccccc;">
+                    We're currently setting up our Telegram community to provide you with:<br><br>
+                    ✓ Instant notifications about platform updates<br>
+                    ✓ Strategies and tips from other members<br>
+                    ✓ Quick support and answers to your questions<br>
+                    ✓ Early access to new earning opportunities<br>
+                    ✓ A place to connect with fellow users<br>
+                    ✓ <strong style="color: #00ff88;">Free personal strategy support for active players</strong><br><br>
+                    <strong style="color: #00ff88;">Coming Soon!</strong><br>
+                    Check back here for the Telegram group link.
+                </p>
+            </div>
+            
+            <div class="trust-note" style="margin-top: 30px;">
+                <strong>🎯 Exclusive Benefit:</strong> Active players in our Telegram group will receive free one-on-one strategy support to help maximize your earnings. We'll help you optimize your faucet claims, leveling strategy, and overall earning potential.
+            </div>
+        </div>
+        
+        <div class="section" style="text-align: center; border: 2px solid #00ff88;">
+            <h2>Ready to Start Earning?</h2>
+            <p class="description" style="margin: 20px 0;">Choose your favorite crypto above and join now to get instant bonuses on all your activities. No waiting, no minimums — start earning crypto today.</p>
+            <a href="#platforms" class="cta-button">View All Platforms</a>
+            
+            <div class="trust-note" style="margin-top: 30px; text-align: left;">
+                <strong>Short Version (for social media):</strong><br><br>
+                ✅ Instant faucet payouts + progression system<br>
+                ✅ +25% faucet bonus applied immediately via referral<br>
+                ✅ Level up by wagering to unlock higher faucets, bonus faucets, and free withdrawals<br>
+                ✅ Low withdrawal minimums<br>
+                ✅ Optional referral program — use it only if you want
+            </div>
+        </div>
+        
+    </div>
+    
+    <footer style="text-align: center; padding: 40px 20px; border-top: 2px solid #00ff88; margin-top: 60px;">
+        <p style="color: #00ff88; font-size: 1.1em;">© 2025 Blockchairstarter-team</p>
+        <p style="color: #cccccc; margin-top: 10px; font-size: 0.9em;">All rights reserved</p>
+    </footer>
+</body>
+</html>
