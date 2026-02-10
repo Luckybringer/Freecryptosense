@@ -1,0 +1,1286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Earn Free Crypto - CryptoPicks Fusion</title>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #ffffff;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header with CryptoPicks Fusion like in app */
+        .site-header {
+            background: rgba(26, 26, 46, 0.95);
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid rgba(138, 180, 248, 0.2);
+        }
+        
+        .site-header h1 {
+            font-size: 3em;
+            margin: 0;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        .site-header h1 .crypto-picks {
+            color: #ffffff;
+        }
+        
+        .site-header h1 .fusion {
+            color: #a78bfa;
+        }
+        
+        .site-header p {
+            color: #8ab4f8;
+            font-size: 1.1em;
+            margin: 10px 0 0 0;
+        }
+        
+        /* Hamburger Menu */
+        .menu-toggle {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            border: none;
+            border-radius: 8px;
+            padding: 12px 16px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(167, 139, 250, 0.3);
+            transition: all 0.3s;
+        }
+        
+        .menu-toggle:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(167, 139, 250, 0.4);
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+        
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+        
+        .menu-toggle.active .hamburger span:nth-child(1) {
+            transform: rotate(45deg) translate(8px, 8px);
+        }
+        
+        .menu-toggle.active .hamburger span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .menu-toggle.active .hamburger span:nth-child(3) {
+            transform: rotate(-45deg) translate(7px, -7px);
+        }
+        
+        .menu-text {
+            color: #ffffff;
+            font-weight: 600;
+            font-size: 16px;
+        }
+        
+        /* Side Navigation */
+        .side-nav {
+            position: fixed;
+            left: -300px;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: linear-gradient(180deg, #1a1a2e 0%, #0f0f1e 100%);
+            border-right: 2px solid #a78bfa;
+            padding: 80px 20px 20px 20px;
+            z-index: 999;
+            transition: left 0.3s ease;
+            overflow-y: auto;
+            box-shadow: 4px 0 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        .side-nav.open {
+            left: 0;
+        }
+        
+        .side-nav a {
+            display: block;
+            color: #8ab4f8;
+            text-decoration: none;
+            padding: 15px 20px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            transition: all 0.3s;
+            border-left: 3px solid transparent;
+        }
+        
+        .side-nav a:hover {
+            background-color: rgba(167, 139, 250, 0.1);
+            border-left-color: #a78bfa;
+            color: #ffffff;
+            padding-left: 25px;
+        }
+        
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 998;
+            display: none;
+        }
+        
+        .overlay.active {
+            display: block;
+        }
+        
+        .hero {
+            text-align: center;
+            padding: 40px 20px;
+        }
+        
+        /* BIG LOGO ICON */
+        .hero-logo {
+            max-width: 250px;
+            margin: 20px auto 30px auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(167, 139, 250, 0.4);
+            display: block;
+        }
+        
+        .hero h1 {
+            color: #00ff88;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+            line-height: 1.3;
+        }
+        
+        .crypto-icons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .crypto-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #a78bfa;
+            transition: transform 0.3s;
+        }
+        
+        .crypto-icon:hover {
+            transform: scale(1.1);
+        }
+        
+        .hero-subtitle {
+            color: #cccccc;
+            font-size: 1.2em;
+            margin: 20px 0;
+        }
+        
+        .verified-note {
+            background-color: rgba(167, 139, 250, 0.1);
+            padding: 15px;
+            max-width: 800px;
+            margin: 20px auto;
+            border-radius: 10px;
+            border: 1px solid #a78bfa;
+        }
+        
+        /* DOWNLOAD APP SECTION - SMALL BUTTONS UNDER LOGO */
+        .download-section {
+            max-width: 600px;
+            margin: 30px auto;
+            text-align: center;
+        }
+        
+        .download-title {
+            color: #a78bfa;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        
+        .download-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .download-btn {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            color: #ffffff;
+            padding: 12px 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9em;
+            transition: all 0.3s;
+            border: 2px solid #a78bfa;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+            cursor: pointer;
+        }
+        
+        .download-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(167, 139, 250, 0.4);
+        }
+        
+        .download-icon {
+            font-size: 1.8em;
+        }
+        
+        .cta-huge {
+            display: inline-block;
+            background: linear-gradient(135deg, #00ff88 0%, #00cc66 100%);
+            color: #000000;
+            padding: 20px 50px;
+            font-size: 1.4em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 20px 0;
+            transition: all 0.3s;
+            box-shadow: 0 10px 40px rgba(0, 255, 136, 0.4);
+            cursor: pointer;
+        }
+        
+        .cta-huge:hover {
+            box-shadow: 0 15px 50px rgba(0, 255, 136, 0.6);
+            transform: translateY(-3px);
+        }
+        
+        .section {
+            background: rgba(26, 26, 46, 0.6);
+            border: 2px solid #a78bfa;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .collapsible-section {
+            background-color: rgba(10, 10, 10, 0.5);
+            border: 1px solid #a78bfa;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .collapsible-header {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 20px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+        
+        .collapsible-header:hover {
+            background: rgba(42, 42, 78, 0.8);
+        }
+        
+        .collapsible-title {
+            color: #a78bfa;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin: 0;
+        }
+        
+        .collapsible-arrow {
+            color: #a78bfa;
+            font-size: 1.5em;
+            transition: transform 0.3s;
+        }
+        
+        .collapsible-arrow.open {
+            transform: rotate(90deg);
+        }
+        
+        .collapsible-content {
+            display: none;
+        }
+        
+        .collapsible-content.open {
+            display: block;
+        }
+        
+        .collapsible-inner {
+            padding: 25px;
+            color: #ccc;
+        }
+        
+        .comparison-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .comparison-item {
+            flex: 1;
+            min-width: 200px;
+        }
+        
+        .comparison-label {
+            color: #a78bfa;
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .comparison-old {
+            color: #888;
+            font-size: 1.5em;
+            text-decoration: line-through;
+        }
+        
+        .comparison-new {
+            color: #00ff88;
+            font-size: 2.5em;
+            font-weight: bold;
+        }
+        
+        .comparison-badge {
+            background-color: #00ff88;
+            color: #000;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+        
+        .step {
+            background: rgba(26, 26, 46, 0.8);
+            border: 2px solid #a78bfa;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.3);
+        }
+        
+        .step-number {
+            background-color: #a78bfa;
+            color: #fff;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            font-weight: bold;
+            margin: 0 auto 20px auto;
+        }
+        
+        .step h3 {
+            color: #a78bfa;
+            margin: 15px 0;
+        }
+        
+        .proof-images {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .proof-image {
+            border: 2px solid #a78bfa;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s;
+        }
+        
+        .proof-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+        }
+        
+        .proof-image img {
+            width: 100%;
+            display: block;
+        }
+        
+        .platform-primary {
+            background: linear-gradient(135deg, #1a1a2e 0%, #a78bfa 100%);
+            border: 3px solid #a78bfa;
+            padding: 40px;
+            margin: 30px 0;
+            border-radius: 15px;
+            text-align: center;
+        }
+        
+        .platform-primary h3 {
+            color: #fff;
+            font-size: 2em;
+        }
+        
+        .platform-primary p {
+            color: #fff;
+            font-size: 1.2em;
+            margin: 15px 0;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: #0a0a0a;
+            color: #a78bfa;
+            padding: 18px 40px;
+            font-size: 1.3em;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 50px;
+            margin: 15px 10px;
+            transition: all 0.3s;
+            border: 2px solid #a78bfa;
+            cursor: pointer;
+        }
+        
+        .cta-button:hover {
+            background-color: #a78bfa;
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+        }
+        
+        .other-platforms {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .platform-card {
+            background: rgba(10, 10, 10, 0.5);
+            border: 1px solid #a78bfa;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .platform-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(167, 139, 250, 0.3);
+        }
+        
+        .platform-card h4 {
+            color: #a78bfa;
+            margin: 10px 0;
+        }
+        
+        .platform-card a {
+            display: inline-block;
+            background-color: #a78bfa;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 50px;
+            margin-top: 10px;
+            font-weight: bold;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+        
+        .platform-card a:hover {
+            background-color: #8b5cf6;
+        }
+        
+        /* Support Section */
+        .support-form {
+            background: rgba(26, 26, 46, 0.8);
+            padding: 30px;
+            border-radius: 10px;
+            border: 2px solid #a78bfa;
+        }
+        
+        .support-form h3 {
+            color: #a78bfa;
+            margin-bottom: 20px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #8ab4f8;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+        
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            background-color: rgba(10, 10, 10, 0.5);
+            border: 1px solid #a78bfa;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #8ab4f8;
+            box-shadow: 0 0 10px rgba(167, 139, 250, 0.3);
+        }
+        
+        .form-group textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .submit-button {
+            background: linear-gradient(135deg, #a78bfa 0%, #8b5cf6 100%);
+            color: #ffffff;
+            padding: 15px 40px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+        }
+        
+        .submit-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(167, 139, 250, 0.4);
+        }
+        
+        .submit-button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+        
+        .success-message {
+            background-color: rgba(0, 255, 136, 0.2);
+            border: 2px solid #00ff88;
+            padding: 20px;
+            border-radius: 10px;
+            color: #00ff88;
+            text-align: center;
+            font-size: 1.1em;
+            margin-top: 20px;
+            display: none;
+        }
+        
+        .success-message.show {
+            display: block;
+        }
+        
+        .disclaimer {
+            background-color: rgba(26, 10, 10, 0.8);
+            border: 2px solid #ff8800;
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 8px;
+        }
+        
+        .disclaimer h3 {
+            color: #ff8800;
+        }
+        
+        .disclaimer p, .disclaimer li {
+            color: #cccccc;
+            font-size: 0.9em;
+            line-height: 1.6;
+        }
+        
+        .disclaimer ul {
+            margin-left: 20px;
+            margin-top: 15px;
+        }
+        
+        .disclaimer li {
+            margin-bottom: 10px;
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            border-top: 2px solid #a78bfa;
+            margin-top: 60px;
+        }
+        
+        footer p {
+            color: #8ab4f8;
+            margin: 5px 0;
+        }
+        
+        @media (max-width: 768px) {
+            .site-header h1 {
+                font-size: 2em;
+            }
+            .hero h1 {
+                font-size: 1.8em;
+            }
+            .cta-huge {
+                font-size: 1.2em;
+                padding: 18px 40px;
+            }
+            .comparison-new {
+                font-size: 1.8em;
+            }
+            .download-buttons {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- HONEYPOT -->
+    <div style="position:absolute;left:-9999px;opacity:0;" aria-hidden="true">
+        <a href="https://dogepick.io/" id="h1">link</a>
+        <a href="https://litepick.io/" id="h2">link</a>
+        <input type="text" id="h3" name="email">
+    </div>
+
+    <!-- Header - Like in App -->
+    <div class="site-header">
+        <h1>
+            <span class="crypto-picks">CryptoPicks</span> <span class="fusion">Fusion</span>
+        </h1>
+        <p>Earn free crypto with the trusted Pick.io family! Join all 8 platforms, get 50% commission share + instant credit, and unlock exclusive live strategy support.</p>
+    </div>
+
+    <!-- Hamburger Menu Button -->
+    <button class="menu-toggle" id="menuToggle">
+        <div class="hamburger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <span class="menu-text">Menu</span>
+    </button>
+
+    <!-- Side Navigation -->
+    <nav class="side-nav" id="sideNav">
+        <a onclick="scrollToSection('why')">Why Use Our Links</a>
+        <a onclick="scrollToSection('how')">How It Works</a>
+        <a onclick="scrollToSection('platforms')">Crypto Platforms</a>
+        <a onclick="scrollToSection('proof')">Reliability and Trustscore</a>
+        <a onclick="scrollToSection('features')">Platform Features</a>
+        <a onclick="scrollToSection('faq')">FAQ</a>
+        <a onclick="scrollToSection('support')">Support</a>
+        <a onclick="scrollToSection('disclaimer')">Disclaimer</a>
+    </nav>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+
+    <div class="hero">
+        <!-- BIG LOGO -->
+        <img src="logo.jpeg" alt="CryptoPicks Fusion Logo" class="hero-logo" onerror="this.style.display='none'">
+        
+        <h1>Earn Free Crypto and Join Our Exclusive 50% Commission Share with Instant Payout on All Platforms</h1>
+
+        <div class="crypto-icons">
+            <img src="dogecoin-icon.png" alt="Dogecoin" class="crypto-icon" onerror="this.style.display='none'">
+            <img src="solana-icon.png" alt="Solana" class="crypto-icon" onerror="this.style.display='none'">
+            <img src="litecoin-icon.png" alt="Litecoin" class="crypto-icon" onerror="this.style.display='none'">
+            <img src="tron-icon.png" alt="Tron" class="crypto-icon" onerror="this.style.display='none'">
+            <img src="bnb-icon.png" alt="BNB" class="crypto-icon" onerror="this.style.display='none'">
+            <img src="polygon-icon.png" alt="Polygon" class="crypto-icon" onerror="this.style.display='none'">
+            <img src="sui-icon.png" alt="Sui" class="crypto-icon" onerror="this.style.display='none'">
+            <img src="toncoin-icon.png" alt="Toncoin" class="crypto-icon" onerror="this.style.display='none'">
+        </div>
+
+        <!-- DOWNLOAD APP SECTION - SMALL UNDER LOGO -->
+        <div class="download-section">
+            <div class="download-title">DOWNLOAD OUR APP HERE</div>
+            <div class="download-buttons">
+                <a href="#" class="download-btn" onclick="downloadApp('smartphone')">
+                    <div class="download-icon">📱</div>
+                    <div>Smartphone</div>
+                </a>
+                <a href="#" class="download-btn" onclick="downloadApp('iphone')">
+                    <div class="download-icon">🍎</div>
+                    <div>i-phone</div>
+                </a>
+                <a href="#" class="download-btn" onclick="downloadApp('windows')">
+                    <div class="download-icon">🪟</div>
+                    <div>Windows</div>
+                </a>
+                <a href="#" class="download-btn" onclick="downloadApp('ios')">
+                    <div class="download-icon">💻</div>
+                    <div>IOS</div>
+                </a>
+            </div>
+        </div>
+
+        <p class="hero-subtitle">No investment • No personal data required • Instant bonus payouts</p>
+        <p class="verified-note">⚠️ <strong>Verified payouts</strong> | Also read <a onclick="scrollToSection('disclaimer')" style="color: #ff8800; text-decoration: underline; font-weight: bold; cursor: pointer;"><span style="color: #ff8800;">disclaimer</span></a></p>
+
+        <p style="color: #00ff88; font-size: 1.2em; margin: 20px 0; font-weight: bold;">Try out the most popular platform:</p>
+
+        <a onclick="scrollToSection('how')" class="cta-huge">🚀 Start Earning Free Crypto Now</a>
+
+        <p style="color: #ccc; font-size: 1.1em; margin-top: 20px;">Or choose from 7 other crypto platforms below</p>
+    </div>
+
+    <div class="container">
+
+        <!-- Section 1: Why Use Our Links -->
+        <div class="section" id="why">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title">💰 Why Use Our Links to Sign Up?</div>
+                    <div class="collapsible-arrow">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="comparison-row">
+                            <div class="comparison-item">
+                                <div class="comparison-label">Without Our Links - When you get</div>
+                                <div class="comparison-old">€10.00</div>
+                                <div style="color: #888; margin-top: 10px; font-size: 0.9em;">Standard earnings</div>
+                            </div>
+
+                            <div style="font-size: 3em; color: #a78bfa;">→</div>
+
+                            <div class="comparison-item">
+                                <div class="comparison-label">With our links - You get</div>
+                                <div class="comparison-new">€12.50</div>
+                                <div class="comparison-badge">+25% INSTANT BONUS 🎉</div>
+                            </div>
+                        </div>
+
+                        <p style="color: #00ff88; margin-top: 30px; font-size: 1.5em; text-align: center; font-weight: bold;">
+                            Instant more payouts on the platforms then without subscribtion through our links
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: How It Works -->
+        <div class="section" id="how">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title">🚀 How It Works (3 Simple Steps)</div>
+                    <div class="collapsible-arrow">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="steps">
+                            <div class="step">
+                                <div class="step-number">1</div>
+                                <h3>Click & Subscribe</h3>
+                                <p style="color: #ccc;">Click any platform link below and sign up on the platform.</p>
+                            </div>
+
+                            <div class="step">
+                                <div class="step-number">2</div>
+                                <h3>Confirm email for bonus acces</h3>
+                                <p style="color: #ccc;">Confirm your email address and receive free bonus faucets to start earning immediately. Once your e-mail is confirmed you receive the EXTRA 50% commission on all your activities.</p>
+                            </div>
+
+                            <div class="step">
+                                <div class="step-number">3</div>
+                                <h3>Earn and enjoy</h3>
+                                <p style="color: #ccc;">Claim your free crypto hourly, play provably fair games, or complete surveys for extra earnings.</p>
+                            </div>
+
+                            <div class="step">
+                                <div class="step-number">4</div>
+                                <h3>Exclusive Free Personal Strategy Support</h3>
+                                <p style="color: #ccc;">Subscribe to all platforms to receive live strategy support.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Crypto Platforms -->
+        <div class="section" id="platforms">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title">🌍 Choose Your Crypto Platform</div>
+                    <div class="collapsible-arrow">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p style="text-align: center; color: #ccc; font-size: 1.2em; margin-bottom: 30px;">Try it out with our most recommended option, then choose from 7 more</p>
+
+                        <div class="platform-primary">
+                            <h3>🐕 Most Popular: DogePick</h3>
+                            <p>Earn Dogecoin (DOGE) • Biggest community • Easiest to start</p>
+                            <a onclick="O('d')" class="cta-button" style="font-size: 1.5em; padding: 25px 50px;">🚀 Start with DogePick</a>
+                        </div>
+
+                        <h3 style="text-align: center; margin: 40px 0 20px 0; color: #a78bfa;">Or Choose Another Crypto:</h3>
+
+                        <div class="other-platforms">
+                            <div class="platform-card">
+                                <h4>☀️ SolPick</h4>
+                                <p style="color: #ccc; font-size: 0.9em;">Earn Solana (SOL)</p>
+                                <a onclick="O('s')">Join SolPick</a>
+                            </div>
+
+                            <div class="platform-card">
+                                <h4>💎 LitePick</h4>
+                                <p style="color: #ccc; font-size: 0.9em;">Earn Litecoin (LTC)</p>
+                                <a onclick="O('l')">Join LitePick</a>
+                            </div>
+
+                            <div class="platform-card">
+                                <h4>⚡ TronPick</h4>
+                                <p style="color: #ccc; font-size: 0.9em;">Earn Tron (TRX)</p>
+                                <a onclick="O('t')">Join TronPick</a>
+                            </div>
+
+                            <div class="platform-card">
+                                <h4>🟡 BnbPick</h4>
+                                <p style="color: #ccc; font-size: 0.9em;">Earn BNB</p>
+                                <a onclick="O('b')">Join BnbPick</a>
+                            </div>
+
+                            <div class="platform-card">
+                                <h4>🔵 PolPick</h4>
+                                <p style="color: #ccc; font-size: 0.9em;">Earn Polygon (POL)</p>
+                                <a onclick="O('p')">Join PolPick</a>
+                            </div>
+
+                            <div class="platform-card">
+                                <h4>🌊 SuiPick</h4>
+                                <p style="color: #ccc; font-size: 0.9em;">Earn Sui (SUI)</p>
+                                <a onclick="O('u')">Join SuiPick</a>
+                            </div>
+
+                            <div class="platform-card">
+                                <h4>💎 TonPick</h4>
+                                <p style="color: #ccc; font-size: 0.9em;">Earn Toncoin (TON)</p>
+                                <a onclick="O('o')">Join TonPick</a>
+                            </div>
+                        </div>
+
+                        <div style="background-color: rgba(167, 139, 250, 0.1); border-left: 4px solid #a78bfa; padding: 20px; margin: 40px 0; text-align: center;">
+                            <strong>💡 Pro Tip:</strong> You can join multiple platforms and diversify your crypto earnings! Each platform works independently with the same 25% bonus structure.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Proof -->
+        <div class="section" id="proof">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title">📊 Proof: Actual Coinbase Deposits</div>
+                    <div class="collapsible-arrow">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p style="color: #ccc; font-size: 1.1em; margin-bottom: 20px;">Screenshots of instant payouts</p>
+
+                        <div class="proof-images">
+                            <a href="https://imgur.com/a/mr7LLc7" target="_blank" class="proof-image">
+                                <img src="https://i.imgur.com/UegcUle.png" alt="SOL deposits to Coinbase">
+                            </a>
+                            <a href="https://imgur.com/a/mr7LLc7" target="_blank" class="proof-image">
+                                <img src="https://i.imgur.com/ZvqKeux.png" alt="LTC deposits to Coinbase">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Platform Features -->
+        <div class="section" id="features">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title">🎯 Platform Features</div>
+                    <div class="collapsible-arrow">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p style="text-align: center; color: #ccc; margin-bottom: 30px;">Click any feature to learn more</p>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">💧 Hourly Faucets</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>Claim free crypto every hour with instant credit to your account. Rewards appear in your balance immediately with no pending status. The more active you are, the higher your faucet rewards become through the platform's progression system.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">🎮 Mini Games & Wagering</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>Play games and place wagers to increase your experience level. Higher levels unlock higher faucet payouts and trigger bonus faucets. Active wagering earns you instant rewards plus progression benefits that compound over time.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">📋 Surveys & Offers</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>Complete surveys at your own pace and earn instant crypto rewards. No minimums, no delays — payments are credited immediately upon completion. Plus you get an extra 2.5% bonus on top of the platform's base survey rewards.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">💰 Weekly Cashback System</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>The platform offers a weekly cashback system to reward active users. Details and rates are managed by the platform and may vary. This is in addition to all other bonuses you receive through our referral link.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">💸 Low Fees & Free Withdrawals</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>The platform provides low withdrawal minimums with competitive fees. Free withdrawals are available at higher levels — the more you play and level up, the more you save on fees. Withdraw to your personal preferred wallet anytime.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FAQ -->
+        <div class="section" id="faq">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title">❓ FAQ</div>
+                    <div class="collapsible-arrow">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p style="text-align: center; color: #ccc; margin-bottom: 30px;">Click any question to see the answer</p>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">Are the bonuses real and instant?</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>Yes. All bonuses are applied instantly by the platform at the moment you perform an activity. No pending, no waiting, no manual processing.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">How do I get the 25% bonus?</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>Simply sign up using our referral link. The bonus activates automatically—no extra steps required. When you claim a faucet, the platform instantly credits you 25% extra in referral section for every generated commission of the user.</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="collapsible-section">
+                            <div class="collapsible-header" onclick="toggleCollapse(this)">
+                                <div class="collapsible-title">Is there a catch?</div>
+                                <div class="collapsible-arrow">▶</div>
+                            </div>
+                            <div class="collapsible-content">
+                                <div class="collapsible-inner">
+                                    <p>No catch. When you sign up through our link, the platform gives us a referral commission. We share 50% of that commission with you as instant bonuses. It's a win-win.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Support Section -->
+        <div class="section" id="support">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title">📧 Support</div>
+                    <div class="collapsible-arrow">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <div class="support-form">
+                            <h3>Contact Us</h3>
+                            <p style="color: #8ab4f8; margin-bottom: 20px;">Have questions or need help? Send us a message and we'll get back to you soon!</p>
+                            
+                            <form id="supportForm" onsubmit="return sendSupportMessage(event)">
+                                <div class="form-group">
+                                    <label for="email">Email Address *</label>
+                                    <input type="email" id="email" name="email" required placeholder="your@email.com">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="subject">Subject *</label>
+                                    <input type="text" id="subject" name="subject" required placeholder="How can we help you?">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label for="message">Message *</label>
+                                    <textarea id="message" name="message" required placeholder="Please describe your question or issue in detail..."></textarea>
+                                </div>
+                                
+                                <button type="submit" class="submit-button" id="submitBtn">Send Message</button>
+                            </form>
+                            
+                            <div class="success-message" id="successMessage">
+                                ✅ Message sent. We will contact you soon.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="section" id="disclaimer">
+            <div class="collapsible-section">
+                <div class="collapsible-header" onclick="toggleCollapse(this)">
+                    <div class="collapsible-title" style="color: #ff8800;">⚠️ Disclaimer</div>
+                    <div class="collapsible-arrow" style="color: #ff8800;">▶</div>
+                </div>
+                <div class="collapsible-content">
+                    <div class="collapsible-inner">
+                        <p style="margin: 15px 0; color: #ff8800;"><strong>We share our referral commission with you as bonuses. All bonuses depend on the platform's current rules and can change anytime.</strong></p>
+
+                        <ul style="margin-top: 15px; color: #ccc; list-style: none; padding-left: 0;">
+                            <li style="margin-bottom: 10px;">• All bonuses are platform-based and governed by the platform's current referral policies</li>
+                            <li style="margin-bottom: 10px;">• We don't control, modify, or guarantee the platform's referral system or bonus rates</li>
+                            <li style="margin-bottom: 10px;">• Bonus rates may change or be removed by the platform at any time without notice</li>
+                            <li style="margin-bottom: 10px;">• Bonuses are applied automatically by the platform, not manually by us</li>
+                            <li style="margin-bottom: 10px;">• We're not responsible for platform outages, policy changes, or account restrictions</li>
+                            <li style="margin-bottom: 10px;">• By using our referral link, you agree to the platform's terms of service</li>
+                            <li style="margin-bottom: 10px;">• This site provides information only—no financial advice or guarantees</li>
+                            <li style="margin-bottom: 10px;">• All rewards depend on the platform's operational conditions</li>
+                        </ul>
+
+                        <h3 style="margin-top: 30px; color: #ff8800;">Privacy Policy</h3>
+                        <p style="color: #ccc; margin-top: 15px;">We respect your privacy. This website does not collect, store, or process any personal data. We do not use cookies, tracking scripts, or analytics tools. When you click on referral links, you are directed to third-party platforms that have their own privacy policies and terms of service. We are not responsible for the data practices of these third-party platforms. By using our referral links, you acknowledge that you will be subject to the privacy policies of those platforms.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <footer>
+        <p style="font-size: 1.1em; color: #888;">© 2025 Blockchairstarter-team. All rights reserved.</p>
+    </footer>
+
+    <script>
+// BOT PROTECTION + ENCRYPTED LINKS
+const L={d:atob('aHR0cHM6Ly9kb2dlcGljay5pby8/cmVmPU5vb2JjYWtl'),s:atob('aHR0cHM6Ly9zb2xwaWNrLmlvLz9yZWY9Tm9vYmNha2U='),l:atob('aHR0cHM6Ly9saXRlcGljay5pby8/cmVmPU5vb2JjYWtl'),t:atob('aHR0cHM6Ly90cm9ucGljay5pby8/cmVmPU5vb2JjYWtl'),b:atob('aHR0cHM6Ly9ibmJwaWNrLmlvLz9yZWY9Tm9vYmNha2U='),p:atob('aHR0cHM6Ly9wb2xwaWNrLmlvLz9yZWY9Tm9vYmNha2U='),u:atob('aHR0cHM6Ly9zdWlwaWNrLmlvLz9yZWY9Tm9vYmNha2U='),o:atob('aHR0cHM6Ly90b25waWNrLmdhbWUvP3JlZj1Ob29iY2FrZQ==')};
+let S=0,T=Date.now(),B={m:0,c:0,s:0};
+function D(){let s=0,u=navigator.userAgent.toLowerCase();if(/bot|crawler|spider|curl|wget|python|selenium|phantom/i.test(u))s+=50;if(navigator.webdriver)s+=50;if(!navigator.languages||!navigator.languages.length)s+=30;if(!navigator.plugins||!navigator.plugins.length)s+=20;if(!window.outerWidth||!window.outerHeight)s+=30;try{if(!document.createElement('canvas').getContext('2d'))s+=30;}catch(e){s+=30;}S=s;return s>=70;}
+function V(){let t=(Date.now()-T)/1000;if(t<2)S+=30;if(B.m<3)S+=25;if(!B.s&&t>3)S+=20;return S<70;}
+function O(p){if(D()||!V())return alert('Access denied'),false;let u=L[p];if(!u)return false;window.open(u,'_blank');return true;}
+
+window.addEventListener('DOMContentLoaded',()=>{
+    D();
+    ['h1','h2'].forEach(i=>{
+        let e=document.getElementById(i);
+        if(e)e.onclick=e=>{e.preventDefault();alert('Bot detected');};
+    });
+    document.addEventListener('mousemove',()=>B.m++);
+    document.addEventListener('click',()=>B.c++);
+    document.addEventListener('scroll',()=>B.s++);
+    setInterval(()=>{if(D())alert('Bot detected');},5000);
+});
+
+function toggleCollapse(header) {
+    const content = header.nextElementSibling;
+    const arrow = header.querySelector('.collapsible-arrow');
+    
+    if (content && arrow) {
+        content.classList.toggle('open');
+        arrow.classList.toggle('open');
+    }
+}
+
+function scrollToSection(sectionId) {
+    const menuToggle = document.getElementById('menuToggle');
+    const sideNav = document.getElementById('sideNav');
+    const overlay = document.getElementById('overlay');
+    
+    // Close menu
+    menuToggle.classList.remove('active');
+    sideNav.classList.remove('open');
+    overlay.classList.remove('active');
+    
+    const targetElement = document.getElementById(sectionId);
+    
+    if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        
+        setTimeout(function() {
+            const collapsibleSection = targetElement.querySelector('.collapsible-section');
+            if (collapsibleSection) {
+                const header = collapsibleSection.querySelector('.collapsible-header');
+                const content = collapsibleSection.querySelector('.collapsible-content');
+                const arrow = collapsibleSection.querySelector('.collapsible-arrow');
+                
+                if (content && arrow && !content.classList.contains('open')) {
+                    content.classList.add('open');
+                    arrow.classList.add('open');
+                }
+            }
+        }, 500);
+    }
+}
+
+// Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const sideNav = document.getElementById('sideNav');
+const overlay = document.getElementById('overlay');
+
+menuToggle.addEventListener('click', function() {
+    menuToggle.classList.toggle('active');
+    sideNav.classList.toggle('open');
+    overlay.classList.toggle('active');
+});
+
+overlay.addEventListener('click', function() {
+    menuToggle.classList.remove('active');
+    sideNav.classList.remove('open');
+    overlay.classList.remove('active');
+});
+
+// Support Form Handler
+function sendSupportMessage(event) {
+    event.preventDefault();
+    
+    const submitBtn = document.getElementById('submitBtn');
+    const successMessage = document.getElementById('successMessage');
+    const form = document.getElementById('supportForm');
+    
+    const email = document.getElementById('email').value;
+    const subject = document.getElementById('subject').value;
+    const message = document.getElementById('message').value;
+    
+    // Disable button during submission
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    
+    // Simulate sending (in production, use a backend service)
+    setTimeout(() => {
+        form.reset();
+        successMessage.classList.add('show');
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+        
+        // Hide success message after 5 seconds
+        setTimeout(() => {
+            successMessage.classList.remove('show');
+        }, 5000);
+    }, 1000);
+    
+    return false;
+}
+
+// App Download Handler
+function downloadApp(platform) {
+    const files = {
+        'smartphone': 'fusion_network_smartphone.txt',
+        'iphone': 'fusion_network_iphone.txt',
+        'windows': 'fusion_network_windows.txt',
+        'ios': 'fusion_network_ios.txt'
+    };
+    
+    if (files[platform]) {
+        const link = document.createElement('a');
+        link.href = files[platform];
+        link.download = files[platform];
+        link.click();
+    } else {
+        alert('App download for ' + platform + ' coming soon! Please check back later or contact support.');
+    }
+    return false;
+}
+    </script>
+</body>
+</html>
